@@ -5,10 +5,19 @@ const substitution = require('../src/substitution.js');
 describe('substitution', () => {
   const mixedAlphabet = 'xoyqmcgrukswaflnthdjpzibev';
 
-  it("Should only include spaces and letters", () => {
-    const expected = 'jrufscpw';
-    const actual = substitution("t!hi!@#nk!ful?", mixedAlphabet);
-    expect(actual).to.equal(expected);
+  it("Alphabet should contain all characters in the input, return false otherwise", () => {
+    const actual = substitution('jrufscpw', 'xoyqmcgrukswaflnthd!pzibev', false);
+    expect(actual).to.be.false;
+  });
+
+  it('Should return false if the alphabet is not a string', () => {
+    const actual = substitution('thinkful', 1);
+    expect(actual).to.be.false;
+  });
+
+  it('Should return false if the input in not a string', () => {
+    const actual = substitution(13, 'abcdefghijklmnopqrstuvwxyz');
+    expect(actual).to.be.false;
   });
 
   it("When encoding, should maintain spaces throughout", () => {
@@ -39,8 +48,18 @@ describe('substitution', () => {
   });
 
   it('Should return false if alphabet is missing', () => {
-    const actual = substitution(mixedAlphabet);
+    const actual = substitution('thinkful');
     expect(actual).to.be.false;
+  });
+
+  it('Should allow the alphabet to contain symbols and special characters', () => {
+    const expected = 'jr$fscpw';
+    const actual = substitution('thinkful', 'xoyqmcgr$kswaflnthdjpzibev');
+    expect(actual).to.equal(expected);
+
+    const expected1 = 'thinkful';
+    const actual1 = substitution('jr$fscpw', 'xoyqmcgr$kswaflnthdjpzibev', false);
+    expect(actual1).to.equal(expected1);
   });
 
 });

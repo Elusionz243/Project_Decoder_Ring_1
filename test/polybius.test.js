@@ -10,6 +10,11 @@ describe('polybius', () => {
     expect(expected).to.equal(actual);
   })
 
+  it('Should return false if the input is not a string', () => {
+    const actual = polybius(31);
+    expect(actual).to.be.false;
+  })
+
   it("Should only allow spaces and letters will be included.", () => {
     const expected = '3251131343 2543241341 3251131343 2543241341';
     const actual = polybius('He!ll!o ??world#@ He!ll!o ??world#@');

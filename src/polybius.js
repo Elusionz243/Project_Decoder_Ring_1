@@ -7,7 +7,7 @@ const alphabet = [
 ];
 
 function polybius(input, encode = true) {
-  if (!input) return false;
+  if (!input || typeof input !== 'string') return false;
   let result = '';
   let finalResult = [];
   if (encode) {

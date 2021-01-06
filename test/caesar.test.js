@@ -9,6 +9,16 @@ describe('caesar', () => {
     expect(actual).to.equal(expected);
   });
 
+  it('Should return false if the input is not a string', () => {
+    const actual = caesar(134, 3);
+    expect(actual).to.be.false;
+  });
+
+  it('Should return false, if the shift is not a number', () => {
+    const actual = caesar('thinkful', 'haha');
+    expect(actual).to.be.false;
+  })
+
   it("If shift is negative, should shift to the left (e.g. a shift of -3 on the letter a)", () => {
     const expected = 'qefkhcri'
     const actual = caesar("thinkful", -3);
