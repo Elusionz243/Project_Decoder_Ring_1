@@ -1,4 +1,5 @@
 function substitution(input, alphabet, encode = true) {
+  if (!alphabet || !input) return false;
   const regAlphabet = 'abcdefghijklmnopqrstuvwxyz';
   const sorted = alphabet.split('').sort().join('');
   if (alphabet.length !== 26 || regAlphabet !== sorted) return false;
@@ -11,7 +12,11 @@ function substitution(input, alphabet, encode = true) {
     input.toLowerCase().split(' ').forEach(words => {
       let temp = '';
       words.split('').forEach(character => {
-        temp += randomAlphabet[sortedAlphabet.indexOf(character)];
+        if (character.match(/([^a-z\s])/g)) {
+          temp;
+        } else {
+          temp += randomAlphabet[sortedAlphabet.indexOf(character)];
+        }
       });
       result.push(temp);
     });
@@ -19,7 +24,11 @@ function substitution(input, alphabet, encode = true) {
     input.toLowerCase().split(' ').forEach(words => {
       let temp = '';
       words.split('').forEach(character => {
-        temp += sortedAlphabet[randomAlphabet.indexOf(character)];
+        if (character.match(/([^a-z\s])/g)) {
+          temp;
+        } else {
+          temp += sortedAlphabet[randomAlphabet.indexOf(character)];
+        }
       });
       result.push(temp);
     });

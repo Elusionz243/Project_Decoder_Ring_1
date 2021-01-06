@@ -7,37 +7,36 @@ const alphabet = [
 ];
 
 function polybius(input, encode = true) {
+  if (!input) return false;
+  let result = '';
+  let finalResult = [];
   if (encode) {
-    const lowerCase = input.toLowerCase().split(' ');
-    let encrypted = [];
-    let encryption = '';
-    for (let i = 0; i < lowerCase.length; i++) {
-      let words = lowerCase[i].split('');
-      words.forEach(character =>
-        alphabet.forEach(char => character === char.char ? encryption += char.pos : encryption));
-      encrypted.push(encryption);
-      encryption = '';
-    }
-    return encrypted.join(' ');
-  } else {
-    const split = input.split(' ');
-    if(split.join('').length % 2 !== 0) return false;
-    let decryption = '';
-    let decrypted = [];
-
-    for (let i = 0; i < split.length; i++) {
-      let pairs = split[i].match(/\d{1,2}/g);
-      pairs.forEach(pair => {
-        if (parseInt(pair) === 42) {
-          decryption += '(i/j)';
+    input.toLowerCase().split(' ').forEach(word => {
+      word.split('').forEach(character => {
+        if (character.match(/([^a-z\s])/g)) {
+          result;
+        } else {
+          alphabet.forEach(match => match.char === character ? result += match.pos : result);
         }
-        alphabet.forEach(character => parseInt(pair) === character.pos && parseInt(pair) !== 42 ? decryption += character.char : decryption);
       });
-      decrypted.push(decryption);
-      decryption = '';
-    }
-    return decrypted.join(' ');
+      finalResult.push(result);
+      result = '';
+    });
+  } else if (!encode) {
+    if (input.split(' ').join('').length % 2 !== 0) return false;
+    input.split(' ').forEach(decryptedWord => {
+      decryptedWord.match(/\d{1,2}/g).forEach(num => {
+        if (parseInt(num) === 42) {
+          result += `(i/j)`;
+        } else {
+          alphabet.forEach(match => parseInt(num) === match.pos ? result += match.char : result);
+        }
+      });
+      finalResult.push(result);
+      result = '';
+    });
   }
+  return finalResult.join(' ');
 }
 
 module.exports = polybius;
