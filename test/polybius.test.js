@@ -18,19 +18,19 @@ describe('polybius', () => {
   it("Should only allow spaces and letters will be included.", () => {
     const expected = '3251131343 2543241341 3251131343 2543241341';
     const actual = polybius('He!ll!o ??world#@ He!ll!o ??world#@');
-    expect(expected).to.equal(actual);
+    expect(actual).to.equal(expected);
   });
 
   it("Should ignore capital letters", () => {
     const expected = '4432423352125413';
     const actual = polybius('THINKFUL');
-    expect(expected).to.equal(actual);
+    expect(actual).to.equal(expected);
   })
 
   it("Should decode the given input", () => {
     const expected = 'hello world';
     const actual = polybius('3251131343 2543241341', false);
-    expect(expected).to.equal(actual);
+    expect(actual).to.equal(expected);
   })
 
   it('Should convert i & j to 42', () => {

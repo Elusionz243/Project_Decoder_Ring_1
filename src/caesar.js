@@ -1,4 +1,3 @@
-
 function caesar(input, shift, encode = true) {
   if (shift < -25 || shift > 25 || !shift || shift === 0 || !input || typeof input !== 'string' || typeof shift !== 'number') return false;
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');

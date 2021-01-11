@@ -24,7 +24,8 @@ function substitution(input, alphabet, encode = true) {
       result.push(encrypt);
     });
   } else {
-    for (let character of input) {
+    const alphabetTest = input.split(' ').join('');
+    for (let character of alphabetTest) {
       if (!alphabetSet.has(character)) {
         return false;
       }
@@ -40,4 +41,5 @@ function substitution(input, alphabet, encode = true) {
   }
   return result.join(' ');
 }
+
 module.exports = substitution;

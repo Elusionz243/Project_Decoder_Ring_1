@@ -24,6 +24,10 @@ describe('substitution', () => {
     const expected = 'elp xhm xf mbymwwmfj dne';
     const actual = substitution('You are an excellent spy', mixedAlphabet);
     expect(actual).to.equal(expected);
+
+    const expected1 = 'you are an excellent spy';
+    const actual1 = substitution('elp xhm xf mbymwwmfj dne', mixedAlphabet, false);
+    expect(actual1).to.equal(expected1);
   });
 
   it("Should decode the given input", () => {
